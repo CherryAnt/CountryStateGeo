@@ -4,7 +4,7 @@ namespace Cherryant\CountryStateGeo\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class LanguagesSeeder extends Seeder
+class CsgLanguagesSeeder extends Seeder
 {
     /**
      * Seed the application's database.

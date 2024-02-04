@@ -262,6 +262,6 @@ class CsgDatabaseSeeder extends Seeder
         $this->call(Countries\ZW_Zimbabwe::class);
 
         // All countries translations
-        $this->call(LanguagesSeeder::class);
+        $this->call(CsgLanguagesSeeder::class);
     }
 }

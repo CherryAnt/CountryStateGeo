@@ -13,13 +13,23 @@
     ],
     "autoload": {
         "psr-4": {
-            "Cherryant\\CountryStateGeo\\": "src/"
+            "Cherryant\\CountryStateGeo\\": "src/",
+            "Cherryant\\CountryStateGeo\\Database\\Seeders\\Countries\\": "database/seeders/countries/",
+            "Cherryant\\CountryStateGeo\\Database\\Seeders\\Languages\\": "database/seeders/languages/",
+            "Cherryant\\CountryStateGeo\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Cherryant\\CountryStateGeo\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
     },
     "require": {
         "php": "^8.1",
@@ -41,7 +51,10 @@
         "laravel": {
             "providers": [
                 "Cherryant\\CountryStateGeo\\CountryStateGeoProvider"
-            ]
+            ],
+            "aliases": {
+                "CountryStateGeo": "CherryAnt\\CountryStateGeo\\Facades\\CountryStateGeo"
+            }
         }
     },
     "require-dev": {
