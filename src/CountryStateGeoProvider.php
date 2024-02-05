@@ -22,6 +22,11 @@ class CountryStateGeoProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../public' => public_path('vendor/csg'),
+            ], 'csg');
+        }
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }

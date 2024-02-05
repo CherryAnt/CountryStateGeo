@@ -108,6 +108,14 @@ class Country extends Model
     }
 
     /**
+     * Get the states.
+     */
+    public function states()
+    {
+        return $this->hasMany(State::class, 'csg_country_id');
+    }
+
+    /**
      * Get all countries with translations
      * in a optimized query
      *

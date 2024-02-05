@@ -263,5 +263,9 @@ class CsgDatabaseSeeder extends Seeder
 
         // All countries translations
         $this->call(CsgLanguagesSeeder::class);
+
+        Builder::states();
+        Builder::provinces();
+        Builder::cities();
     }
 }
