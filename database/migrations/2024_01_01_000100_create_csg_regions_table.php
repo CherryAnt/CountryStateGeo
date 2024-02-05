@@ -14,7 +14,7 @@ class CreateCsgRegionsTable extends Migration
     public function up()
     {
         Schema::create('csg_regions', function (Blueprint $table) {
-            $table->tinyIncrements('id');
+            $table->id();
             $table->uuid('uuid')->unique();
             $table->timestamps();
         });

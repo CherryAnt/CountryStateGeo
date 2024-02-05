@@ -14,14 +14,14 @@ class CreateCsgCitiesTable extends Migration
     public function up()
     {
         Schema::create('csg_cities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->tinyInteger('csg_country_id')->unsigned();
-            $table->tinyInteger('csg_state_id')->nullable();
-            $table->tinyInteger('csg_province_id')->nullable();
+            $table->id();
+            $table->bigInteger('csg_country_id')->unsigned()->index();
+            $table->bigInteger('csg_state_id')->unsigned()->index()->nullable();
+            $table->bigInteger('csg_province_id')->unsigned()->index()->nullable();
             $table->string('name');
             $table->json('cp');
-            $table->float('lat');
-            $table->float('lng');
+            $table->float('lat', 10, 6);
+            $table->float('lng', 10, 6);
             $table->boolean('visible')->default(true);
             $table->timestamps();
 

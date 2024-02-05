@@ -14,9 +14,9 @@ class CreateCsgProvincesTable extends Migration
     public function up()
     {
         Schema::create('csg_provinces', function (Blueprint $table) {
-            $table->increments('id');
-            $table->tinyInteger('csg_country_id')->unsigned();
-            $table->tinyInteger('csg_state_id')->nullable();
+            $table->id();
+            $table->bigInteger('csg_country_id')->unsigned()->index();
+            $table->bigInteger('csg_state_id')->unsigned()->index()->nullable();
             $table->string('name');
             $table->string('code');
             $table->json('geo');

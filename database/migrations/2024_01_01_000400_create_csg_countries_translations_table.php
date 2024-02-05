@@ -14,8 +14,8 @@ class CreateCsgCountriesTranslationsTable extends Migration
     public function up()
     {
         Schema::create('csg_countries_translations', function (Blueprint $table) {
-            $table->id('id');
-            $table->integer('csg_country_id')->unsigned();
+            $table->id();
+            $table->bigInteger('csg_country_id')->unsigned()->index();
             $table->string('name');
             $table->string('slug');
             $table->string('locale')->index();

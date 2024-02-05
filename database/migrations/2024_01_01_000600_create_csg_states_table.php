@@ -14,8 +14,8 @@ class CreateCsgStatesTable extends Migration
     public function up()
     {
         Schema::create('csg_states', function (Blueprint $table) {
-            $table->increments('id');
-            $table->tinyInteger('csg_country_id')->unsigned();
+            $table->id();
+            $table->bigInteger('csg_country_id')->unsigned()->index();
             $table->string('name');
             $table->string('code');
             $table->boolean('visible')->default(true);

@@ -131,13 +131,14 @@ class Builder
 
     public static function states(): void
     {
-        $_isos = ["fr","li","be","ci","tf","nl","dz","gp","lv","mu","tn","td","at","md","mh","er","kw","sm","kp","pl","se","tl","sk","kz","mx","tz","my","dk","si","ee","th","ad","sj","ru","tr","rs","cf","sg","nz","so","iq","sl","ca","bz","sh","bs","pe","vi","it","vu","km","lb","lt","rw","fj","cn","ro","ph","mq","mw","nc","uy","gt","bm","na","hu","do","ae","bw","pm","gm","bb","dm","gr","re","by","lk","gb","ua","sc","la","mm","mc","fm","zm","bg","ke","ie","ve","id","pt","kg","jp","vn","nr","lu","ly","co","al","gd","mg","im","ba","vc","br","va","kh","ki","cd","az","eg","kr","dj","ch","sy","il","is","sn","cz","cl","pa","za","ir","mp","de","tj","je","ax","ug","ws","cu","ec","au","sr","cr","mk","gh","pk","pg","ye","in","bh","cv","np","tm","mn","mr","us","no","ag","ni","bd","pr","jo","cy","fi","ls","et","ma","zw","sv","sa","bo","bf","qa","hr","ky","as","kn","yt","ng","gu","uz","af","cg","ml","cm","am","me","ar","gn","fo","es","pw","gg","gy","bn","hn","ne","tt","tw","wf","to","bj","aq","mt","mz","bi","gq","eh","gl","tg","tv","sb","lr","ao","bq","ga","bt","py","sd","st","gw","um","jm","gf","om","mv","ge","ht","sz"];
+        $_isos = ['AO','BF','BI','BJ','BW','CD','CF','CG','CI','CM','CV','DJ','DZ','EG','EH','ER','ET','GA','GH','GM','GN','GQ','GW','KE','KM','LR','LS','LY','MA','MG','ML','MR','MU','MW','MZ','NA','NE','NG','RE','RW','SC','SD','SH','SL','SN','SO','ST','SZ','TD','TG','TN','TZ','UG','YT','ZA','ZM','ZW','AG','AI','AR','AW','BB','BL','BM','BO','BR','BS','BZ','CA','CL','CO','CR','CU','DM','DO','EC','FK','GD','GF','GL','GP','GT','GY','HN','HT','JM','KN','KY','LC','MF','MQ','MS','MX','NI','PA','PE','PM','PR','PY','SR','SV','TC','TT','US','UY','VC','VE','VG','VI','AE','AF','AM','AZ','BD','BH','BN','BT','CN','GE','HK','ID','IL','IN','IQ','IR','JO','JP','KG','KH','KP','KR','KW','KZ','LA','LB','LK','MM','MN','MO','MV','MY','NP','OM','PH','PK','PS','QA','SA','SG','SY','TH','TJ','TL','TM','TR','TW','UZ','VN','YE','AD','AL','AT','AX','BA','BE','BG','BY','CH','CY','CZ','DE','DK','EE','ES','FI','FO','FR','GB','GG','GI','GR','HR','HU','IE','IM','IS','IT','JE','LI','LT','LU','LV','MC','MD','ME','MK','MT','NL','NO','PL','PT','RO','RS','RU','SE'];
         foreach ($_isos as $iso){
+            $iso= strtolower($iso);
             $country = Country::whereIso(strtoupper($iso))
                 ->firstOrFail();
 
-            if(File::exists("database/json/states/".$iso.".json")){
-                $jsonStates = File::get("database/json/states/".$iso.".json");
+            if(File::exists(__DIR__ . "/../data/states/".$iso.".json")){
+                $jsonStates = File::get(__DIR__ . "/../data/states/".$iso.".json");
                 $states = json_decode($jsonStates);
                 foreach ($states as $state) {
                     State::create([
@@ -153,16 +154,18 @@ class Builder
 
     public static function provinces(): void
     {
-        $_isos = ["fr","li","be","ci","tf","nl","dz","gp","lv","mu","tn","td","at","md","mh","er","kw","sm","kp","pl","se","tl","sk","kz","mx","tz","my","dk","si","ee","th","ad","sj","ru","tr","rs","cf","sg","nz","so","iq","sl","ca","bz","sh","bs","pe","vi","it","vu","km","lb","lt","rw","fj","cn","ro","ph","mq","mw","nc","uy","gt","bm","na","hu","do","ae","bw","pm","gm","bb","dm","gr","re","by","lk","gb","ua","sc","la","mm","mc","fm","zm","bg","ke","ie","ve","id","pt","kg","jp","vn","nr","lu","ly","co","al","gd","mg","im","ba","vc","br","va","kh","ki","cd","az","eg","kr","dj","ch","sy","il","is","sn","cz","cl","pa","za","ir","mp","de","tj","je","ax","ug","ws","cu","ec","au","sr","cr","mk","gh","pk","pg","ye","in","bh","cv","np","tm","mn","mr","us","no","ag","ni","bd","pr","jo","cy","fi","ls","et","ma","zw","sv","sa","bo","bf","qa","hr","ky","as","kn","yt","ng","gu","uz","af","cg","ml","cm","am","me","ar","gn","fo","es","pw","gg","gy","bn","hn","ne","tt","tw","wf","to","bj","aq","mt","mz","bi","gq","eh","gl","tg","tv","sb","lr","ao","bq","ga","bt","py","sd","st","gw","um","jm","gf","om","mv","ge","ht","sz"];
+        $_isos = ['AO','BF','BI','BJ','BW','CD','CF','CG','CI','CM','CV','DJ','DZ','EG','EH','ER','ET','GA','GH','GM','GN','GQ','GW','KE','KM','LR','LS','LY','MA','MG','ML','MR','MU','MW','MZ','NA','NE','NG','RE','RW','SC','SD','SH','SL','SN','SO','ST','SZ','TD','TG','TN','TZ','UG','YT','ZA','ZM','ZW','AG','AI','AR','AW','BB','BL','BM','BO','BR','BS','BZ','CA','CL','CO','CR','CU','DM','DO','EC','FK','GD','GF','GL','GP','GT','GY','HN','HT','JM','KN','KY','LC','MF','MQ','MS','MX','NI','PA','PE','PM','PR','PY','SR','SV','TC','TT','US','UY','VC','VE','VG','VI','AE','AF','AM','AZ','BD','BH','BN','BT','CN','GE','HK','ID','IL','IN','IQ','IR','JO','JP','KG','KH','KP','KR','KW','KZ','LA','LB','LK','MM','MN','MO','MV','MY','NP','OM','PH','PK','PS','QA','SA','SG','SY','TH','TJ','TL','TM','TR','TW','UZ','VN','YE','AD','AL','AT','AX','BA','BE','BG','BY','CH','CY','CZ','DE','DK','EE','ES','FI','FO','FR','GB','GG','GI','GR','HR','HU','IE','IM','IS','IT','JE','LI','LT','LU','LV','MC','MD','ME','MK','MT','NL','NO','PL','PT','RO','RS','RU','SE'];
         foreach ($_isos as $iso){
+            $iso= strtolower($iso);
             $country = Country::whereIso(strtoupper($iso))
                 ->firstOrFail();
 
-            if(File::exists("database/json/provinces/".$iso.".json")){
-                $jsonProvinces = File::get("database/json/provinces/".$iso.".json");
+            if(File::exists(__DIR__ . "/../data/provinces/".$iso.".json")){
+                $jsonProvinces = File::get(__DIR__ . "/../data/provinces/".$iso.".json");
                 $provinces = json_decode($jsonProvinces);
                 $states_codes = [];
                 foreach ($provinces as $province) {
+                    if($province->name==null) continue;
                     $stateId = null;
                     if($province->state_code!=''){
                         if(!array_key_exists($province->state_code, $states_codes)){
@@ -191,17 +194,19 @@ class Builder
 
     public static function cities(): void
     {
-        $_isos = ["fr","li","be","ci","tf","nl","dz","gp","lv","mu","tn","td","at","md","mh","er","kw","sm","kp","pl","se","tl","sk","kz","mx","tz","my","dk","si","ee","th","ad","sj","ru","tr","rs","cf","sg","nz","so","iq","sl","ca","bz","sh","bs","pe","vi","it","vu","km","lb","lt","rw","fj","cn","ro","ph","mq","mw","nc","uy","gt","bm","na","hu","do","ae","bw","pm","gm","bb","dm","gr","re","by","lk","gb","ua","sc","la","mm","mc","fm","zm","bg","ke","ie","ve","id","pt","kg","jp","vn","nr","lu","ly","co","al","gd","mg","im","ba","vc","br","va","kh","ki","cd","az","eg","kr","dj","ch","sy","il","is","sn","cz","cl","pa","za","ir","mp","de","tj","je","ax","ug","ws","cu","ec","au","sr","cr","mk","gh","pk","pg","ye","in","bh","cv","np","tm","mn","mr","us","no","ag","ni","bd","pr","jo","cy","fi","ls","et","ma","zw","sv","sa","bo","bf","qa","hr","ky","as","kn","yt","ng","gu","uz","af","cg","ml","cm","am","me","ar","gn","fo","es","pw","gg","gy","bn","hn","ne","tt","tw","wf","to","bj","aq","mt","mz","bi","gq","eh","gl","tg","tv","sb","lr","ao","bq","ga","bt","py","sd","st","gw","um","jm","gf","om","mv","ge","ht","sz"];
+        $_isos = ['AO','BF','BI','BJ','BW','CD','CF','CG','CI','CM','CV','DJ','DZ','EG','EH','ER','ET','GA','GH','GM','GN','GQ','GW','KE','KM','LR','LS','LY','MA','MG','ML','MR','MU','MW','MZ','NA','NE','NG','RE','RW','SC','SD','SH','SL','SN','SO','ST','SZ','TD','TG','TN','TZ','UG','YT','ZA','ZM','ZW','AG','AI','AR','AW','BB','BL','BM','BO','BR','BS','BZ','CA','CL','CO','CR','CU','DM','DO','EC','FK','GD','GF','GL','GP','GT','GY','HN','HT','JM','KN','KY','LC','MF','MQ','MS','MX','NI','PA','PE','PM','PR','PY','SR','SV','TC','TT','US','UY','VC','VE','VG','VI','AE','AF','AM','AZ','BD','BH','BN','BT','CN','GE','HK','ID','IL','IN','IQ','IR','JO','JP','KG','KH','KP','KR','KW','KZ','LA','LB','LK','MM','MN','MO','MV','MY','NP','OM','PH','PK','PS','QA','SA','SG','SY','TH','TJ','TL','TM','TR','TW','UZ','VN','YE','AD','AL','AT','AX','BA','BE','BG','BY','CH','CY','CZ','DE','DK','EE','ES','FI','FO','FR','GB','GG','GI','GR','HR','HU','IE','IM','IS','IT','JE','LI','LT','LU','LV','MC','MD','ME','MK','MT','NL','NO','PL','PT','RO','RS','RU','SE'];
         foreach ($_isos as $iso){
+            $iso= strtolower($iso);
             $country = Country::whereIso(strtoupper($iso))
                 ->firstOrFail();
 
-            if(File::exists("database/json/cities/".$iso.".json")){
-                $jsonCities = File::get("database/json/cities/".$iso.".json");
+            if(File::exists(__DIR__ . "/../data/cities/".$iso.".json")){
+                $jsonCities = File::get(__DIR__ . "/../data/cities/".$iso.".json");
                 $cities = json_decode($jsonCities);
                 $states_codes = [];
                 $provinces_codes = [];
                 foreach ($cities as $city) {
+                    if($city->name==null) continue;
                     $stateId = null;
                     $provinceId = null;
                     if($city->province_code!=''){
@@ -209,9 +214,11 @@ class Builder
                             $province = Province::where([
                                 'csg_country_id'=>$country->id,
                                 'code'=>$city->province_code
-                            ])->firstOrFail();
+                            ])->first();
+                            if($province){
                             $provinceId = $province->id;
                             $provinces_codes[$city->province_code] = $provinceId;
+                            }
                         }else{
                             $provinceId = $provinces_codes[$city->province_code];
                         }
@@ -221,9 +228,11 @@ class Builder
                             $state = State::where([
                                 'csg_country_id'=>$country->id,
                                 'code'=>$city->state_code
-                            ])->firstOrFail();
+                            ])->first();
+                            if($state){
                             $stateId = $state->id;
                             $states_codes[$city->state_code] = $stateId;
+                            }
                         }else{
                             $stateId = $states_codes[$city->state_code];
                         }

@@ -14,9 +14,9 @@ class CreateCsgCountriesGeographicalTable extends Migration
     public function up()
     {
         Schema::create('csg_countries_geographical', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->uuid('uuid');
-            $table->integer('csg_country_id')->unsigned();
+            $table->bigInteger('csg_country_id')->unsigned()->index();
             $table->string('type');
             $table->string('features_type');
             $table->json('properties');
